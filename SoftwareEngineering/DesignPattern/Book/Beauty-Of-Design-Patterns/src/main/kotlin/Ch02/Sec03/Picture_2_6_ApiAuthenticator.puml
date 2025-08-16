@@ -1,0 +1,23 @@
+@startuml
+
+interface ApiAuthenticator {
+    + void auth(String url)
+    + void auth(ApiRequest apiRequest)
+}
+
+class DefaultApiAuthenticatorImpl {
+    ..Field..
+    - CredentialStorage credentialStorage
+
+    ..Constructor..
+    + DefaultApiAuthenticatorImpl()
+    + DefaultApiAuthenticatorImpl(CredentialStorage credentialStorage)
+
+    ..Method..
+    + void auth(String url)
+    + void auth(ApiRequest apiRequest)
+}
+
+ApiAuthenticator <|.. DefaultApiAuthenticatorImpl
+
+@enduml
