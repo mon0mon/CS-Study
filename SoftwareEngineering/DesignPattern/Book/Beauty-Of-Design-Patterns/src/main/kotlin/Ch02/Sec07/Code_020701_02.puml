@@ -1,0 +1,21 @@
+@startuml
+
+interface Filter {
+    ..Methods..
+    + void doFilter(RpcRequest req)
+}
+
+class AuthenticationFilter <<Filter>> {
+    ..Methods..
+    + void doFilter(RpcRequest req)
+}
+
+class RateLimitFilter <<Filter>> {
+    ..Methods..
+    + void doFilter(RpcRequest req)
+}
+
+Filter <|.. AuthenticationFilter
+Filter <|.. RateLimitFilter
+
+@enduml

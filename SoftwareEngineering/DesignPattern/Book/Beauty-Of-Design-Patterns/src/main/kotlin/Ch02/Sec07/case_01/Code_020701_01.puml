@@ -1,0 +1,42 @@
+@startuml
+
+abstract class Logger {
+    ..Fields..
+    - String name
+    - boolean enabled
+    - Level minPermittedLevel
+
+    ..Constructor..
+    + Logger(String name, boolean enabled, Level minPermittedLevel)
+
+    ..Methods..
+    + void log(Level level, String message)
+    # abstract void doLog(Level level, String message)
+}
+
+class FileLogger <<Logger>> {
+    ..Fields..
+    - Writer fileWriter
+
+    ..Constructor..
+    + FileLogger(String name, boolean enabled, Level minPermittedLevel, String filePath)
+
+    ..Methods..
+    # abstract void doLog(Level level, String message)
+}
+
+class MessageQueueLogger <<Logger>> {
+    ..Fields..
+    - MessageQueueClient messageQueueClient
+
+    ..Constructor..
+    + MessageQueueLogger(String name, boolean enabled, Level minPermittedLevel, MessageQueueClient messageQueueClient)
+
+    ..Methods..
+    # abstract void doLog(Level level, String message)
+}
+
+Logger <|-- FileLogger
+Logger <|-- MessageQueueLogger
+
+@enduml

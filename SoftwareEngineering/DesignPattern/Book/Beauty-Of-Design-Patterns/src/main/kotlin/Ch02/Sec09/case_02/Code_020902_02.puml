@@ -1,0 +1,60 @@
+@startuml
+
+interface Flyable {
+    + fly() : void
+}
+
+interface Tweetable {
+    + tweet() : void
+}
+
+interface EggLayable {
+    + layEgg() : void
+}
+
+class FlyAbility {
+    + fly() : void
+}
+
+class TweetAbility {
+    + tweet() : void
+}
+
+class EggLayAbility {
+    + layEgg() : void
+}
+
+class Ostrich {
+    - tweetAbility : TweetAbility
+    - eggLayAbility : EggLayAbility
+}
+
+' 인터페이스 구현 관계 (실현)
+FlyAbility ..|> Flyable
+TweetAbility ..|> Tweetable
+EggLayAbility ..|> EggLayable
+
+' 합성 관계 (has-a)
+Ostrich *-- TweetAbility : contains
+Ostrich *-- EggLayAbility : contains
+
+' 위임을 통한 인터페이스 구현
+Ostrich ..|> Tweetable : <<delegates>>
+Ostrich ..|> EggLayable : <<delegates>>
+
+note right of Ostrich
+  Kotlin의 위임(by) 키워드를 사용하여
+  TweetAbility와 EggLayAbility에게
+  기능을 위임합니다.
+
+  생성자에서 의존성을 주입받아
+  합성 관계를 형성합니다.
+end note
+
+note top of FlyAbility
+  능력별로 분리된 구현체들
+  - 단일 책임 원칙 준수
+  - 재사용 가능한 컴포넌트
+end note
+
+@enduml

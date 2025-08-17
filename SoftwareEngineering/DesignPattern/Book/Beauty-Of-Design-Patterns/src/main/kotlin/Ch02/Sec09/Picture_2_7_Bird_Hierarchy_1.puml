@@ -1,0 +1,25 @@
+@startuml
+
+hide members
+
+abstract class AbstractBird
+abstract class AbstractFlyableBird
+abstract class AbstractUnFlyableBird
+
+class Sparrow
+class Pigeon
+class Crow
+class Penguin
+class Ostrich
+
+AbstractBird <|-- AbstractFlyableBird
+AbstractBird <|-- AbstractUnFlyableBird
+
+AbstractFlyableBird <|-- Sparrow
+AbstractFlyableBird <|-- Pigeon
+AbstractFlyableBird <|-- Crow
+
+AbstractUnFlyableBird <|-- Penguin
+AbstractUnFlyableBird <|-- Ostrich
+
+@enduml
