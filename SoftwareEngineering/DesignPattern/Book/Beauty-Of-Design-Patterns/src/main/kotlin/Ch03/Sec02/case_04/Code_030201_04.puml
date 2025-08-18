@@ -1,0 +1,31 @@
+@startuml
+
+class ApplicationContext {
+    ..Fields..
+    + AlertRule alertRule
+    + Notification notification
+    + Alert alert
+    - {static} ApplicationContext instance
+
+    ..Constructor..
+    - ApplicationContext applicationContext()
+
+    ..Methods..
+    + Applicationcontext getInstance()
+}
+
+class Alert {
+    ..Fields..
+    - List<AlertHandler> alertHandlers
+
+    ..Methods..
+    + List<AlertHandler> getAlertHandlers()
+    + void add(AlertHandler alertHandler)
+    + void check(ApiStatInfo apiStat)
+}
+
+dataclass ApiStatInfo {
+
+}
+
+@enduml
